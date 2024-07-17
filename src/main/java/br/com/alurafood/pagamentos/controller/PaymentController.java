@@ -2,6 +2,7 @@ package br.com.alurafood.pagamentos.controller;
 
 import java.net.URI;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,16 +20,18 @@ import br.com.alurafood.pagamentos.dto.PaymentDto;
 import br.com.alurafood.pagamentos.service.PaymentService;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
-@RestController()
+@RestController
+@RequestMapping(value = "/payments")
 public class PaymentController {
 
     @Autowired
     private PaymentService paymentService;
 
-    @GetMapping
+    @GetMapping("/all")
     public Page<PaymentDto> list(@PageableDefault(size = 10) Pageable pageable) {
+        System.out.println("ENTROUENTROUENTROUENTROUENTROUENTROUENTROU ");
         return paymentService.findAll(pageable);
 
     }
@@ -41,12 +43,13 @@ public class PaymentController {
         return ResponseEntity.ok(dto);
     }
 
+    @Transactional
     @PostMapping
     public ResponseEntity<PaymentDto> cadastrar(@RequestBody @Valid PaymentDto dto, UriComponentsBuilder uriBuilder) {
-        PaymentDto pagamento = paymentService.createPayment(dto);
-        URI endereco = uriBuilder.path("/pagamentos/{id}").buildAndExpand(pagamento.getId()).toUri();
+        PaymentDto payment = paymentService.createPayment(dto);
+        URI address = uriBuilder.path("/payments/{id}").buildAndExpand(payment.getId()).toUri();
 
-        return ResponseEntity.created(endereco).body(pagamento);
+        return ResponseEntity.created(address).body(payment);
     }
 
     @PutMapping("/{id}")

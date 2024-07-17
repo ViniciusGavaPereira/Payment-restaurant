@@ -23,7 +23,7 @@ public class Payment {
     @Positive
     private Long id;
 
-    private Double price;
+    private Double value;
 
     @NotBlank
     @Size(max = 100)
@@ -35,7 +35,7 @@ public class Payment {
 
     @NotBlank
     @Size(max = 7)
-    private String expire;
+    private String expiration;
 
     @NotBlank
     @Size(max = 3, min = 3)
@@ -55,13 +55,13 @@ public class Payment {
         return id;
     }
 
-    public Payment(Long id, Double price, String name, String number, String expire, String code, Status status,
+    public Payment(Long id, Double value, String name, String number, String expiration, String code, Status status,
             Long orderId, Long paymentMethodId) {
         this.id = id;
-        this.price = price;
+        this.value = value;
         this.name = name;
         this.number = number;
-        this.expire = expire;
+        this.expiration = expiration;
         this.code = code;
         this.status = status;
         this.orderId = orderId;
@@ -75,12 +75,12 @@ public class Payment {
         this.id = id;
     }
 
-    public Double getPrice() {
-        return price;
+    public Double getvalue() {
+        return value;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setvalue(Double value) {
+        this.value = value;
     }
 
     public String getName() {
@@ -99,12 +99,12 @@ public class Payment {
         this.number = number;
     }
 
-    public String getExpire() {
-        return expire;
+    public String getexpiration() {
+        return expiration;
     }
 
-    public void setExpire(String expire) {
-        this.expire = expire;
+    public void setexpiration(String expiration) {
+        this.expiration = expiration;
     }
 
     public String getCode() {
