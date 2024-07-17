@@ -12,14 +12,11 @@ public class PaymentDto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    @NotNull
-    @Positive
     private Long id;
-    private Double price;
+    private Double value;
     private String name;
     private String number;
-    private String expire;
+    private String expiration;
     private String code;
     private Status status;
     private Long orderId;
@@ -36,12 +33,12 @@ public class PaymentDto {
         this.id = id;
     }
 
-    public Double getPrice() {
-        return price;
+    public Double getvalue() {
+        return value;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setvalue(Double value) {
+        this.value = value;
     }
 
     public String getName() {
@@ -60,12 +57,12 @@ public class PaymentDto {
         this.number = number;
     }
 
-    public String getExpire() {
-        return expire;
+    public String getexpiration() {
+        return expiration;
     }
 
-    public void setExpire(String expire) {
-        this.expire = expire;
+    public void setexpiration(String expiration) {
+        this.expiration = expiration;
     }
 
     public String getCode() {

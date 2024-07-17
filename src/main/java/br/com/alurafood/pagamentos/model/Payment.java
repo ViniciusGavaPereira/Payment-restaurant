@@ -18,11 +18,10 @@ public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotNull
     @Positive
-    private Long id;
-
     private Double value;
 
     @NotBlank
