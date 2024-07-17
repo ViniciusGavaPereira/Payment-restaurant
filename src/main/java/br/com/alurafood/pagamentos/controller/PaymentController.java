@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,7 +44,6 @@ public class PaymentController {
         return ResponseEntity.ok(dto);
     }
 
-    @Transactional
     @PostMapping
     public ResponseEntity<PaymentDto> cadastrar(@RequestBody @Valid PaymentDto dto, UriComponentsBuilder uriBuilder) {
         PaymentDto payment = paymentService.createPayment(dto);
@@ -57,6 +57,12 @@ public class PaymentController {
             @RequestBody @Valid PaymentDto dto) {
         PaymentDto atualizado = paymentService.updatePayment(id, dto);
         return ResponseEntity.ok(atualizado);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<PaymentDto> remover(@PathVariable @NotNull Long id) {
+        paymentService.deletePayment(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
