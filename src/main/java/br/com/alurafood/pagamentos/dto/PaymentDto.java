@@ -3,8 +3,6 @@ package br.com.alurafood.pagamentos.dto;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 
 import br.com.alurafood.pagamentos.model.Status;
 

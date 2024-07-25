@@ -2,7 +2,6 @@ package br.com.alurafood.pagamentos.controller;
 
 import java.net.URI;
 
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -32,7 +31,7 @@ public class PaymentController {
 
     @GetMapping("/all")
     public Page<PaymentDto> list(@PageableDefault(size = 10) Pageable pageable) {
-        System.out.println("ENTROUENTROUENTROUENTROUENTROUENTROUENTROU ");
+
         return paymentService.findAll(pageable);
 
     }
