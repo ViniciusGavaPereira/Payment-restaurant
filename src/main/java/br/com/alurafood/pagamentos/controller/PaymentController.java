@@ -11,6 +11,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -62,6 +63,11 @@ public class PaymentController {
     public ResponseEntity<PaymentDto> remover(@PathVariable @NotNull Long id) {
         paymentService.deletePayment(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{id}/confirm")
+    public void confirmarPagamento(@PathVariable @NotNull Long id) {
+        paymentService.confirmPayment(id);
     }
 
 }
